@@ -2,12 +2,14 @@ var AppView = Backbone.View.extend({
 
   el: '#app',
 
+  defaultSearch: 'food',
+
   initialize: function() {
 
-    this.videos = new Videos(exampleVideoData);
-    //this.videos.search('food');
+    this.videos = new Videos();
+    this.videos.search(this.defaultSearch);
 
-    this.render();
+    setTimeout(this.render.bind(this), 200);
   },
 
   render: function() {
