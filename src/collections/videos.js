@@ -6,8 +6,14 @@ var Videos = Backbone.Collection.extend({
     this.on('change', this.sync, this);
   },
 
-  sync: function() {
+  url: 'https://www.googleapis.com/youtube/v3/search',
 
+  search: function(query) {
+    this.fetch({data: {q: query}});
+  },
+
+  parse: function(response) {
+    return response.items;
   }
 
 });

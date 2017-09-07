@@ -14,7 +14,6 @@ var VideoListEntryView = Backbone.View.extend({
   },
 
   render: function() {
-    console.log('videoListEntryView rendered');
     this.$el.html(this.template(this.model.attributes));
     return this.$el;
   },
