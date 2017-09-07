@@ -5,9 +5,13 @@ var VideoPlayerView = Backbone.View.extend({
   },
 
   render: function(model) {
-    model = model || this.collection.at(0);
-    this.$el.html(this.template(model.attributes));
-    return this.$el;
+    console.log(model);
+
+    //model = model || this.collection[0];
+    if (model) {
+      this.$el.html(this.template(model.attributes));
+      return this.$el;
+    }
   },
 
   template: templateURL('src/templates/videoPlayer.html')
