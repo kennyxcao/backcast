@@ -2,12 +2,9 @@ var AppView = Backbone.View.extend({
 
   el: '#app',
 
-  defaultSearch: 'penguins',
-
   initialize: function() {
     this.$el.html(this.template());
     this.videos = new Videos();
-    this.videos.search(this.defaultSearch);
     this.render();
   },
 

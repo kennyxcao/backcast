@@ -2,14 +2,17 @@ var Videos = Backbone.Collection.extend({
 
   model: Video,
 
-  initialize: function(data) {
-
-  },
+  defaultSearch: 'penguins',
 
   url: 'https://www.googleapis.com/youtube/v3/search',
 
+  initialize: function(data) {
+    if (!data) {
+      this.search(this.defaultSearch);
+    }
+  },
+
   search: function(query) {
-    query = query || 'food';
     this.fetch({data: {
       part: 'snippet',
       type: 'video',
@@ -19,7 +22,7 @@ var Videos = Backbone.Collection.extend({
       key: 'AIzaSyAIG-suobEvTWkLwowDycvczklOccIjvAs'},
       success: function(response) {
         console.log('successful fetch');
-        response.models[0].select();
+        response.at(0).select();
       },
       error: function(e) {
         console.log('fetch error:' + e);
