@@ -19,10 +19,12 @@ var Videos = Backbone.Collection.extend({
       videoEmbeddable: 'true',
       q: query, 
       maxResults: '5', 
-      key: 'AIzaSyAIG-suobEvTWkLwowDycvczklOccIjvAs'},
+      key: YOUTUBE_API_KEY },
       success: function(response) {
         console.log('successful fetch');
-        response.at(0).select();
+        if (response.at(0)) {
+          response.at(0).select();
+        }
       },
       error: function(e) {
         console.log('fetch error:' + e);

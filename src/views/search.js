@@ -6,7 +6,7 @@ var SearchView = Backbone.View.extend({
 
   events: {
     'click button': 'handleClick',
-    'keyup': 'enterAction'
+    'keyup input': 'enterAction'
   },
 
   enterAction: function(e) {
