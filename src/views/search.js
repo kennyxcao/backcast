@@ -1,12 +1,22 @@
 var SearchView = Backbone.View.extend({
 
-  initialize: function() {
+  lastSearch: '',
 
+  initialize: function() {
+    setInterval(this.autoRefresh.bind(this), 1500);
   },
 
   events: {
     'click button': 'handleClick',
     'keyup input': 'enterAction'
+  },
+
+  autoRefresh: function() {
+    var searchInput = this.$el.find('input').val();
+    if (searchInput && searchInput !== this.lastSearch) {
+      this.collection.search(searchInput);
+      this.lastSearch = searchInput;
+    }
   },
 
   enterAction: function(e) {
@@ -17,6 +27,7 @@ var SearchView = Backbone.View.extend({
 
   handleClick: function() {
     this.collection.search(this.$el.find('input').val());
+    this.$el.find('input').val('');
   },
 
   render: function() {
